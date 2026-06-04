@@ -1,77 +1,91 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Mood Wings Facts</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
-</head>
+  <head>
+    <title>Mood Wings Facts</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+  </head>
 
-<body>
+  <body>
 
-  <div class="animated-bg">
-    <span></span>
-    <span></span>
-    <span></span>
-    <span></span>
-    <span></span>
-  </div>
+    <div class="animated-bg">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
 
-  <h1>🌍 Mood Wings Facts</h1>
-  <p>Click for a random fact</p>
+    <h1>🌍 Mood Wings Facts</h1>
+    <p>Click for a random fact</p>
 
-  <button onclick="newFact()">New Fact</button>
+    <button onclick="newFact()">New Fact</button>
 
-  <div class="fact" id="fact">
-    Octopus have 3 hearts and blue blood.
-  </div>
+    <div class="fact" id="fact">
+      Octopus have 3 hearts and blue blood.
+    </div>
 
-<script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2">
+    const supabaseUrl = "https://diutvneqsykiwpzgeodi.supabase.co/rest/v1/";
+    const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRpdXR2bmVxc3lraXdwemdlb2RpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA1ODQxMzksImV4cCI6MjA5NjE2MDEzOX0.o5ueoIssrye6aOJHOeiLIbN6WKd8zIzwv5X_qxS1Ypk";
 
-let facts = [
-"Octopus have three hearts.",
-"Honey never spoils.",
-"Cheetah is the fastest land animal.",
-"Sharks existed before trees.",
-"Bananas are slightly radioactive.",
-"Octopuses have three hearts and blue blood", 
-"A shrimp’s heart is located in its head", 
-"Wombats produce cube-shaped poop", 
-"Cheetahs can accelerate from 0 to 96 km/h in about 3 seconds", 
-"A group of flamingos is called a flamboyance", 
-"Sea otters hold hands while sleeping to avoid drifting apart", 
-"A giraffe’s tongue can be up to 50 cm long", 
-"Honeybees can recognize human faces", 
-"Sloths can hold their breath longer than dolphins", 
-"Kangaroos cannot walk backward", 
-"Elephants can communicate through vibrations in the ground", 
-"Pistol shrimp create a bubble blast hotter than the Sun’s surface", 
-"Penguins propose with pebbles during courtship", 
-"Dolphins use unique signature whistles like names", 
-"The mantis shrimp can see colors humans cannot imagine",
-"A blue whale’s heart can weigh as much as a small car", 
-"Ravens can solve complex puzzles and plan ahead", 
-"Some frogs can freeze solid and survive the winter", 
-"Tardigrades can survive the vacuum of space", 
-"Owls can rotate their heads up to 270 degrees", 
-"The lyrebird can mimic chainsaws, cameras, and other sounds", 
-"Ants can carry objects up to 50 times their body weight", 
-"Male seahorses get pregnant and give birth", 
-"A chameleon’s tongue can extend longer than its body", 
-"Archerfish can shoot jets of water to knock insects from branches", 
-"Polar bears have black skin beneath their white fur", 
-"Crows can remember human faces for years", 
-"The immortal jellyfish can revert to its juvenile form", 
-"Bats are the only mammals capable of true flight", 
-"African lungfish can survive for years buried in dried mud"
+    const supabase = window.supabase.createClient(
+      supabaseUrl,
+      supabaseKey
+    );
+  </script>
+    
+  <script>
 
-];
+  let facts = [
+  "Octopus have three hearts.",
+  "Honey never spoils.",
+  "Cheetah is the fastest land animal.",
+  "Sharks existed before trees.",
+  "Bananas are slightly radioactive.",
+  "Octopuses have three hearts and blue blood", 
+  "A shrimp’s heart is located in its head", 
+  "Wombats produce cube-shaped poop", 
+  "Cheetahs can accelerate from 0 to 96 km/h in about 3 seconds", 
+  "A group of flamingos is called a flamboyance", 
+  "Sea otters hold hands while sleeping to avoid drifting apart", 
+  "A giraffe’s tongue can be up to 50 cm long", 
+  "Honeybees can recognize human faces", 
+  "Sloths can hold their breath longer than dolphins", 
+  "Kangaroos cannot walk backward", 
+  "Elephants can communicate through vibrations in the ground", 
+  "Pistol shrimp create a bubble blast hotter than the Sun’s surface", 
+  "Penguins propose with pebbles during courtship", 
+  "Dolphins use unique signature whistles like names", 
+  "The mantis shrimp can see colors humans cannot imagine",
+  "A blue whale’s heart can weigh as much as a small car", 
+  "Ravens can solve complex puzzles and plan ahead", 
+  "Some frogs can freeze solid and survive the winter", 
+  "Tardigrades can survive the vacuum of space", 
+  "Owls can rotate their heads up to 270 degrees", 
+  "The lyrebird can mimic chainsaws, cameras, and other sounds", 
+  "Ants can carry objects up to 50 times their body weight", 
+  "Male seahorses get pregnant and give birth", 
+  "A chameleon’s tongue can extend longer than its body", 
+  "Archerfish can shoot jets of water to knock insects from branches", 
+  "Polar bears have black skin beneath their white fur", 
+  "Crows can remember human faces for years", 
+  "The immortal jellyfish can revert to its juvenile form", 
+  "Bats are the only mammals capable of true flight", 
+  "African lungfish can survive for years buried in dried mud"
 
-function newFact(){
-let random = Math.floor(Math.random()*facts.length);
-document.getElementById("fact").innerHTML = facts[random];
-}
+  ];
 
-</script>
+  function newFact(){
+  let random = Math.floor(Math.random()*facts.length);
+  document.getElementById("fact").innerHTML = facts[random];
+  }
 
-</body>
+  </script>
+
+  </body>
 </html>
+
+
+
+
